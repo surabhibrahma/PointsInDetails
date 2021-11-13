@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="col-xl-3 row-lg-3 center" *ngIf ="noOfPlayers === 0">
+        <label class="labelStyle lead">
+            <b>Please Enter the Number of Players:</b>
+        </label>
+        <input type="text" class="form-control inputStyle" #noplayers maxlength="4">
+        <br/>
+        <button (click) = "enterPlayerNames(noplayers.value)" class="btn btn-info btn-lg">Next</button>
+    </div>
+    <div class="col-sm-3 center2" *ngIf ="noOfPlayers > 0">
+        <label class="labelStyle2 lead">
+            <b>Enter the Player Names:</b>
+        </label>
+        <br/>
+        <br/>
+        <div *ngFor="let player of playerInfoScoreService.playerDetails; let i = index">
+            <input type="text" class="form-control" id = {{i}}>
+            <br>
+        </div>
+
+        <br/>
+        <button class="btn btn-success btn-lg" (click) = "initializePlayerDetails()">Let's Begin!</button>
+    </div>
+</div>

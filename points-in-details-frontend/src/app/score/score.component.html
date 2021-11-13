@@ -1,0 +1,23 @@
+<div class="container" style="margin-left: 0;">
+    <br/>
+    <div class="col-sm-3">
+        <table class="table">
+            <thead>
+                    <th>Player Name</th>
+                    <th>Score</th>
+                    <th>Add</th>
+              </thead>
+            <tbody>
+                <tr *ngFor="let nam of playerinfoScoreService.playerDetails let i = index">
+                    <td>{{ nam.playerName }}</td>
+                    <td>{{ nam.score }}</td>
+                    <td>
+                        <button class="btn btn-success" (click)="addScore(i)">
+                            Add!
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
