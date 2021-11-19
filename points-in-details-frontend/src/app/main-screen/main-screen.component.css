@@ -1,0 +1,9 @@
+.heading{
+    font-size: 50px;
+    color:rgb(100, 17, 121);
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
