@@ -15,20 +15,34 @@ export class QuestionAnswer{
 export class MainQuestionAnswerService {
 
   quesAns: QuestionAnswer[];
-
-  constructor(private httpClient: HttpClient) { }
-
+  quesIndex: number = 0;
+  isScenario: boolean;
   baseURL: string = 'http://localhost:3000';
+  totalLength: number = 5;
 
-  getByID(){
-    console.log("Hits here!");
-     return this.httpClient.get<QuestionAnswer[]>(this.baseURL+'/dbquery').subscribe( res =>
-     {
-       this.quesAns = res;
-       console.log(res);
-     }
-    );
-    console.log("After the call");
-    console.log(this.quesAns);
+  constructor(private httpClient: HttpClient) {
+    this.httpClient.get<QuestionAnswer[]>(this.baseURL+'/dbquery').subscribe( res =>
+      {
+        this.quesAns = res;
+      }
+     );
+
+     
+   }
+
+  
+
+  getNextQuestion(){
+    this.totalLength = this.totalLength-1;
+    return this.quesAns[this.quesIndex];
+  }
+
+  calculateNextQuestion(){
+    this.quesIndex = Math.floor(Math.random() * (this.totalLength - 0 + 1) + 0);
+    this.isScenario = (this.quesAns[this.quesIndex].Category === 'Scenario');
+  }
+
+  isItAScenario(){
+    return this.isScenario;
   }
 }

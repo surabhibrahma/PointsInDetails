@@ -2,15 +2,16 @@
     <h1 class = "heading">But What's Wrong?</h1>
     <br/>
     <br>
-    <button style="margin-left:100%; width: 200px;" class="btn btn-success" (click)="onGetStatement()">What's Wrong with This Statement?</button>
-    <h3>Statement:</h3>
-    <h2>&nbsp;&nbsp;&nbsp;&nbsp; My name is Surabhi</h2>
-    <button style="margin-left:100%; width: 200px;" class="btn btn-success">Who really killed them?</button>
+    <button style="margin-left:100%; width: 200px;" class="btn btn-success" (click)="onGetStatement()" *ngIf="!isScenario">What's Wrong with This Statement?</button>
+    <h3 *ngIf="!isScenarioHeading">Statement:</h3>
+    <h3 *ngIf="isScenarioHeading">Scenario:</h3>
+    <h2>&nbsp;&nbsp;&nbsp;&nbsp; {{statscen}}</h2>
+    <button style="margin-left:100%; width: 200px;" class="btn btn-success" *ngIf="isScenario" (click)="onGetStatement()">Who really killed them?</button>
     <br>
     <br>
     <br>
     <br>
     <h3>Answer:</h3>
-    <h2>&nbsp;&nbsp;&nbsp;&nbsp; Nothing wrong here, it actually is all true!</h2>
-    <button style="margin-left:100%; width: 200px;" class="btn btn-success">Reveal the Truth</button>
+    <h2 *ngIf="revealAnswer">&nbsp;&nbsp;&nbsp;&nbsp; {{answer}}</h2>
+    <button style="margin-left:100%; width: 200px;" class="btn btn-success" (click)="getAnswer()">Reveal the Truth</button>
 </div>

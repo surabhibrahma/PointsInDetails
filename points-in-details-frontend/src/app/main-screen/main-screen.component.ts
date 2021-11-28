@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MainQuestionAnswerService } from '../main-question-answer.service';
+import { MainQuestionAnswerService, QuestionAnswer } from '../main-question-answer.service';
 
 @Component({
   selector: 'app-main-screen',
@@ -8,13 +8,31 @@ import { MainQuestionAnswerService } from '../main-question-answer.service';
 })
 export class MainScreenComponent implements OnInit {
 
+  statscen: string;
+  answer: string;
+  category: string;
+  revealAnswer: boolean = false;
+  isScenario: boolean = false;
+  isScenarioHeading: boolean = false;
+
   constructor(private mainQuestionAnswerService: MainQuestionAnswerService) { }
 
   ngOnInit(): void {
   }
 
+  getAnswer(){
+    this.mainQuestionAnswerService.calculateNextQuestion();
+    this.revealAnswer = true;
+    this.isScenario = this.mainQuestionAnswerService.isItAScenario();
+  }
+
   onGetStatement(){
-    console.log(this.mainQuestionAnswerService.getByID());
+    this.revealAnswer = false;
+    var retrievedStatement:QuestionAnswer = this.mainQuestionAnswerService.getNextQuestion();
+    this.statscen = retrievedStatement.Statement;
+    this.answer = retrievedStatement.Answer;
+    this.category = retrievedStatement.Category;
+    this.isScenarioHeading = (this.category === 'Scenario')
   }
 
 }
