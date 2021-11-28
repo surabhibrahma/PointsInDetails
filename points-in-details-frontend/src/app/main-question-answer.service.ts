@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap, take, exhaustMap } from 'rxjs/operators';
 
 export class QuestionAnswer{
     ID: number;
@@ -18,7 +17,7 @@ export class MainQuestionAnswerService {
   quesIndex: number = 0;
   isScenario: boolean;
   baseURL: string = 'http://localhost:3000';
-  totalLength: number = 5;
+  totalLength: number = 5; //Change this value based on the number of entries in the DB
 
   constructor(private httpClient: HttpClient) {
     this.httpClient.get<QuestionAnswer[]>(this.baseURL+'/dbquery').subscribe( res =>
