@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { DBQueryService, Question } from './dbquery.service';
+import { map } from 'rxjs/operators';
+import { DBQueryService } from './dbquery.service';
 
 @Controller('dbquery')
 export class DBQueryController {
@@ -10,11 +10,19 @@ export class DBQueryController {
 
   @Get()
   getAll() {
-    return this.dbqueryService.getAllFromDB();
+    return this.dbqueryService.getAllFromDB().pipe(
+      map(res =>{
+        return res.data;
+      })
+    );
   }
 
   @Get(':id')
   getByID(@Param() param){
-    return this.dbqueryService.getFromDBByID(param.id);
+    return this.dbqueryService.getFromDBByID(param.id).pipe(
+      map(res =>{
+      return res.data;
+    })
+    );
   }
 }

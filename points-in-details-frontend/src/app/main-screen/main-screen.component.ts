@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainQuestionAnswerService } from '../main-question-answer.service';
 
 @Component({
   selector: 'app-main-screen',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainQuestionAnswerService: MainQuestionAnswerService) { }
 
   ngOnInit(): void {
+  }
+
+  onGetStatement(){
+    console.log(this.mainQuestionAnswerService.getByID());
   }
 
 }

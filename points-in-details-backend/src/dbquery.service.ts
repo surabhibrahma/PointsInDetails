@@ -19,7 +19,9 @@ export class DBQueryService {
     private databaseURL:string = '';
 
     getAllFromDB(): Observable<AxiosResponse<Question[]>>{
-        return this.httpService.get(this.databaseURL+'.json');
+        return this.httpService.get(this.databaseURL+'.json').pipe(res => {
+            return res;
+        });
     }
 
     getFromDBByID(id:number): Observable<AxiosResponse<Question[]>>{
