@@ -14,11 +14,11 @@ export class Question {
 
 @Injectable()
 export class DBQueryService {
-    refreshToken: string;
+    idtoken: string;
     constructor(private httpService: HttpService, private authService: AuthService){
         this.authService.getAuth().subscribe(
             res =>{
-                this.refreshToken = res.data['refreshToken'];
+                this.idtoken = res.data['idToken'];
             }
         );
     }
@@ -27,15 +27,12 @@ export class DBQueryService {
     private databaseURL:string = '';
 
     getAllFromDB(): Observable<AxiosResponse<Question[]>>{
-        const reqHeaders = {
-            'auth': this.refreshToken
-        }
-        return this.httpService.get(this.databaseURL+'.json').pipe(res => {
+        return this.httpService.get(this.databaseURL+'.json?auth='+this.idtoken).pipe(res => {
             return res;
         });
     }
 
     getFromDBByID(id:number): Observable<AxiosResponse<Question[]>>{
-        return this.httpService.get(this.databaseURL+'/'+id+'.json');
+        return this.httpService.get(this.databaseURL+'/'+id+'.json?auth='+this.idtoken);
     }
 }
