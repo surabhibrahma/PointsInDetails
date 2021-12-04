@@ -19,7 +19,7 @@ export class MainQuestionAnswerService {
   isScenario: boolean;
   baseURL: string = 'http://localhost:3000';
   fin: boolean = false;
-  totalLength: number = 5; //Change this value based on the number of entries in the DB
+  totalLength: number = 4; //Change this value based on the number of entries in the DB - 1
 
   constructor(private httpClient: HttpClient) {
     this.httpClient.get<QuestionAnswer[]>(this.baseURL+'/dbquery').subscribe( res =>
@@ -30,6 +30,7 @@ export class MainQuestionAnswerService {
 
     this.generateRandomSet();
     this.quesIndex = 0;
+    console.log(this.randomNos);
    }
 
   
@@ -53,8 +54,8 @@ export class MainQuestionAnswerService {
 
   generateRandomSet(){
     let ransomnosSet = new Set<number>();
-    while(ransomnosSet.size<this.totalLength){
-      ransomnosSet.add(Math.floor(Math.random() * (this.totalLength - 0 + 1) + 0));
+    while(ransomnosSet.size<=this.totalLength){
+      ransomnosSet.add(Math.floor(Math.random() * (this.totalLength - 1 + 1) + 1));
     }
     this.randomNos = Array.from(ransomnosSet);
   }

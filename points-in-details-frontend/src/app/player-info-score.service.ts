@@ -25,4 +25,10 @@ export class PlayerInfoScoreService {
   displayTheMainScreen(){
     this.displayGameScreen = true;
   }
+
+  getWinnerDetails(highScore: number){
+    var winnerName: string[];
+    winnerName = this.playerDetails.filter( p=> { return p.score === highScore}).map(p => { return p.playerName});
+    console.log(winnerName);
+  }
 }

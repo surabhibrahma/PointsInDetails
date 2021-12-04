@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainQuestionAnswerService } from '../main-question-answer.service';
 import { PlayerInfoScoreService } from '../player-info-score.service';
 
 @Component({
@@ -8,13 +9,23 @@ import { PlayerInfoScoreService } from '../player-info-score.service';
 })
 export class ScoreComponent implements OnInit {
 
-  constructor(public playerinfoScoreService: PlayerInfoScoreService) { }
+  highestScore: number = 0;
+
+  constructor(public playerinfoScoreService: PlayerInfoScoreService, public mainQuestionAnswerService: MainQuestionAnswerService) { }
 
   ngOnInit(): void {
   }
 
   addScore(i: number){
     this.playerinfoScoreService.playerDetails[i].score = this.playerinfoScoreService.playerDetails[i].score+1;
+    if(this.highestScore< this.playerinfoScoreService.playerDetails[i].score){
+      this.highestScore = +this.playerinfoScoreService.playerDetails[i].score;
+    }
+  }
+
+  getAllWinners(){
+    console.log('Highest Score: '+this.highestScore);
+    this.playerinfoScoreService.getWinnerDetails(this.highestScore);
   }
 
 }

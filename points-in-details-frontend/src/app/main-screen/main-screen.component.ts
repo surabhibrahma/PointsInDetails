@@ -15,7 +15,7 @@ export class MainScreenComponent implements OnInit {
   isScenario: boolean = false;
   isScenarioHeading: boolean = false;
 
-  constructor(private mainQuestionAnswerService: MainQuestionAnswerService) { }
+  constructor(public mainQuestionAnswerService: MainQuestionAnswerService) { }
 
   ngOnInit(): void {
   }
