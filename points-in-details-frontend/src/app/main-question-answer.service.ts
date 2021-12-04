@@ -14,9 +14,11 @@ export class QuestionAnswer{
 export class MainQuestionAnswerService {
 
   quesAns: QuestionAnswer[];
-  quesIndex: number = 0;
+  randomNos: number[];
+  quesIndex: number;
   isScenario: boolean;
   baseURL: string = 'http://localhost:3000';
+  fin: boolean = false;
   totalLength: number = 5; //Change this value based on the number of entries in the DB
 
   constructor(private httpClient: HttpClient) {
@@ -26,22 +28,38 @@ export class MainQuestionAnswerService {
       }
      );
 
-     
+    this.generateRandomSet();
+    this.quesIndex = 0;
    }
 
   
 
   getNextQuestion(){
-    this.totalLength = this.totalLength-1;
     return this.quesAns[this.quesIndex];
   }
 
   calculateNextQuestion(){
-    this.quesIndex = Math.floor(Math.random() * (this.totalLength - 0 + 1) + 0);
-    this.isScenario = (this.quesAns[this.quesIndex].Category === 'Scenario');
+    this.quesIndex = this.quesIndex+1;
+    if(this.quesIndex<this.totalLength){
+      this.isScenario = (this.quesAns[this.quesIndex].Category === 'Scenario');
+    }else{
+      this.fin = true;
+    }
   }
 
   isItAScenario(){
     return this.isScenario;
+  }
+
+  generateRandomSet(){
+    let ransomnosSet = new Set<number>();
+    while(ransomnosSet.size<this.totalLength){
+      ransomnosSet.add(Math.floor(Math.random() * (this.totalLength - 0 + 1) + 0));
+    }
+    this.randomNos = Array.from(ransomnosSet);
+  }
+
+  isFinished(){
+    return this.fin;
   }
 }

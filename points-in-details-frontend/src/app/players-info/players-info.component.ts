@@ -21,7 +21,6 @@ export class PlayersInfoComponent implements OnInit {
   }
 
   initializePlayerDetails(){
-    console.log("Inside Initialize players");
     for(let i =0; i< this.noOfPlayers;i++){
        this.playerInfoScoreService.playerDetails[i].playerName = (<HTMLInputElement>document.getElementById(""+i)).value;
        this.playerInfoScoreService.playerDetails[i].score = 0;

@@ -16,7 +16,7 @@ export class DBQueryService {
     constructor(private httpService: HttpService){}
 
     //add database URL
-    private databaseURL:string = '';
+    private databaseURL:string = 'https://points-in-details-db-default-rtdb.asia-southeast1.firebasedatabase.app/main';
 
     getAllFromDB(): Observable<AxiosResponse<Question[]>>{
         return this.httpService.get(this.databaseURL+'.json').pipe(res => {
