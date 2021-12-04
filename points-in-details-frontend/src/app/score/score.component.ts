@@ -25,7 +25,6 @@ export class ScoreComponent implements OnInit {
   }
 
   getAllWinners(){
-    console.log('Highest Score: '+this.highestScore);
     this.playerinfoScoreService.getWinnerDetails(this.highestScore);
     this.mainQuestionAnswerService.showWinner();
   }

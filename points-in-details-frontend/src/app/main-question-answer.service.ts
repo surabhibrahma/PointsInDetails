@@ -32,7 +32,6 @@ export class MainQuestionAnswerService {
 
     this.generateRandomSet();
     this.quesIndex = 0;
-    console.log(this.randomNos);
    }
 
   

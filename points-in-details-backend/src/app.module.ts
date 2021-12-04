@@ -2,6 +2,7 @@ import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthService } from './auth.service';
 import { DBQueryController } from './dbquery.controller';
 import { DBQueryService } from './dbquery.service';
 
@@ -11,6 +12,6 @@ import { DBQueryService } from './dbquery.service';
     maxRedirects: 5,
   })],
   controllers: [AppController,DBQueryController],
-  providers: [AppService,DBQueryService],
+  providers: [AppService,DBQueryService,AuthService],
 })
 export class AppModule {}
