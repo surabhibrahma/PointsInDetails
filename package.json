@@ -1,0 +1,13 @@
+{
+    "name": "points-in-details",
+    "version": "0.0.0",
+    "scripts": {
+        "points-in-details-backend": "cd points-in-details-backend && npm run start",
+        "points-in-details-frontend": "cd points-in-details-frontend && npm run start",
+        "start": "concurrently \"npm run points-in-details-backend\" \"npm run points-in-details-frontend\" "
+    },
+    "private": true,
+    "devDependencies": {
+        "concurrently": "^1.0.0"
+    }
+}
