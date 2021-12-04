@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { PlayersInfoComponent } from './players-info/players-info.component';
 import { ScoreComponent } from './score/score.component';
 import { MainScreenComponent } from './main-screen/main-screen.component';
+import { FinishedWinnerComponent } from './finished-winner/finished-winner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayersInfoComponent,
     ScoreComponent,
-    MainScreenComponent
+    MainScreenComponent,
+    FinishedWinnerComponent
   ],
   imports: [
     BrowserModule,

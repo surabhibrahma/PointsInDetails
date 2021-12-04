@@ -11,6 +11,7 @@ export class Players {
 })
 export class PlayerInfoScoreService {
   playerDetails: Players[];
+  winnerName: string[];
   displayGameScreen: boolean = false;
 
   constructor() { }
@@ -27,8 +28,10 @@ export class PlayerInfoScoreService {
   }
 
   getWinnerDetails(highScore: number){
-    var winnerName: string[];
-    winnerName = this.playerDetails.filter( p=> { return p.score === highScore}).map(p => { return p.playerName});
-    console.log(winnerName);
+    this.winnerName = this.playerDetails.filter( p=> { return p.score === highScore}).map(p => { return p.playerName});
+  }
+
+  getAllWinners(){
+    return this.winnerName;
   }
 }

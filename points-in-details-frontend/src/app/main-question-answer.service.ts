@@ -19,7 +19,9 @@ export class MainQuestionAnswerService {
   isScenario: boolean;
   baseURL: string = 'http://localhost:3000';
   fin: boolean = false;
+  showWin: boolean = false;
   totalLength: number = 4; //Change this value based on the number of entries in the DB - 1
+  randomNosIter: number = 0;
 
   constructor(private httpClient: HttpClient) {
     this.httpClient.get<QuestionAnswer[]>(this.baseURL+'/dbquery').subscribe( res =>
@@ -40,8 +42,9 @@ export class MainQuestionAnswerService {
   }
 
   calculateNextQuestion(){
-    this.quesIndex = this.quesIndex+1;
-    if(this.quesIndex<this.totalLength){
+    this.quesIndex = this.randomNos[this.randomNosIter];
+    this.randomNosIter = this.randomNosIter+1;
+    if(this.quesIndex<=this.totalLength){
       this.isScenario = (this.quesAns[this.quesIndex].Category === 'Scenario');
     }else{
       this.fin = true;
@@ -54,7 +57,7 @@ export class MainQuestionAnswerService {
 
   generateRandomSet(){
     let ransomnosSet = new Set<number>();
-    while(ransomnosSet.size<=this.totalLength){
+    while(ransomnosSet.size<this.totalLength){
       ransomnosSet.add(Math.floor(Math.random() * (this.totalLength - 1 + 1) + 1));
     }
     this.randomNos = Array.from(ransomnosSet);
@@ -62,5 +65,9 @@ export class MainQuestionAnswerService {
 
   isFinished(){
     return this.fin;
+  }
+
+  showWinner(){
+    this.showWin = true;
   }
 }

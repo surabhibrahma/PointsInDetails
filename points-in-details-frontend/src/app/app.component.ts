@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MainQuestionAnswerService } from './main-question-answer.service';
 import { PlayerInfoScoreService } from './player-info-score.service';
 
 @Component({
@@ -8,6 +9,6 @@ import { PlayerInfoScoreService } from './player-info-score.service';
 })
 export class AppComponent {
   title = 'points-in-details-frontend';
-  constructor(public playerInfoScoreService: PlayerInfoScoreService){
+  constructor(public playerInfoScoreService: PlayerInfoScoreService, public mainQuestionAnswerService:MainQuestionAnswerService){
   }
 }

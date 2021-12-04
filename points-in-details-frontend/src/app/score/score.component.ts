@@ -10,6 +10,7 @@ import { PlayerInfoScoreService } from '../player-info-score.service';
 export class ScoreComponent implements OnInit {
 
   highestScore: number = 0;
+  showWinner: boolean = false;
 
   constructor(public playerinfoScoreService: PlayerInfoScoreService, public mainQuestionAnswerService: MainQuestionAnswerService) { }
 
@@ -18,14 +19,15 @@ export class ScoreComponent implements OnInit {
 
   addScore(i: number){
     this.playerinfoScoreService.playerDetails[i].score = this.playerinfoScoreService.playerDetails[i].score+1;
-    if(this.highestScore< this.playerinfoScoreService.playerDetails[i].score){
-      this.highestScore = +this.playerinfoScoreService.playerDetails[i].score;
+    if(this.highestScore < this.playerinfoScoreService.playerDetails[i].score){
+      this.highestScore = this.playerinfoScoreService.playerDetails[i].score;
     }
   }
 
   getAllWinners(){
     console.log('Highest Score: '+this.highestScore);
     this.playerinfoScoreService.getWinnerDetails(this.highestScore);
+    this.mainQuestionAnswerService.showWinner();
   }
 
 }
